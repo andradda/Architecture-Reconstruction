@@ -11,8 +11,14 @@ RUN git clone https://github.com/zeeguu/API.git /app/zeeguu-api
 
 COPY dependency_graph.py /app/dependency_graph.py
 COPY abstract_graph.py /app/abstract_graph.py
+COPY metrics_abstraction.py /app/metrics_abstraction.py
+
 
 WORKDIR /app
 
-# If the first call succeds run the second one
-CMD python dependency_graph.py && python abstract_graph.py 
+# Create the plots directory in the container
+RUN mkdir -p plots
+
+# If the first call succeds run the second one and so on
+CMD python dependency_graph.py && python abstract_graph.py && python metrics_abstraction.py
+
