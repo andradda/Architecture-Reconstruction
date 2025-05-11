@@ -10,7 +10,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN git clone https://github.com/zeeguu/API.git /app/zeeguu-api
 
 COPY dependency_graph.py /app/dependency_graph.py
+COPY abstract_graph.py /app/abstract_graph.py
 
 WORKDIR /app
 
-CMD ["python", "dependency_graph.py"]
+# If the first call succeds run the second one
+CMD python dependency_graph.py && python abstract_graph.py 
