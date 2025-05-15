@@ -20,5 +20,6 @@ WORKDIR /app
 RUN mkdir -p plots
 
 # If the first call succeds run the second one and so on
-CMD python dependency_graph.py && python abstract_graph.py && python metrics_abstraction.py
+CMD ["sh", "-c", "python dependency_graph.py && python abstract_graph.py && python metrics_abstraction.py"]
+
 
